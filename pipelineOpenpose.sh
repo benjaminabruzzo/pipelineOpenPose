@@ -3,13 +3,11 @@
 	# Distribution 			Kernel* 	GCC 	GLIBC 	ICC 	PGI 	XLC 	CLANG
 	# Ubuntu 16.04.5 (**) 	4.4 		5.4.0 	2.23 	18.0 	18.x 	NO 		6.0.0
 
-	sudo apt-get install -y linux-headers-$(uname -r) python-dev python-devel numpy cmake
-	sudo apt-get install -y libgoogle-glog-dev protobuf-compiler install libatlas-base-dev libeigen3-dev 
-	sudo apt install cmake-qt-gui
+	cd ~/pipelineOP/openpose_cfg/ && bash 001_install_deps.sh && cd ~/pipelineOP
 
 	# download the cuda toolkit
 	https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=debnetwork
-	cd ~/pipeline16044/openpose_cfg/ && bash 002_install_cuda.sh && cd ~/pipeline16044
+	cd ~/pipelineOP/openpose_cfg/ && bash 002_install_cuda.sh && cd ~/pipelineOP
 
 	# Test nvidia installation
 	nvidia-smi
@@ -18,10 +16,10 @@
 	# Download from 
 	https://developer.nvidia.com/rdp/cudnn-download
 	# gutterpuddles pointANDgloryZERO
-	cd ~/pipeline16044/openpose_cfg/ && bash 003_install_cudnn.sh && cd ~/pipeline16044
+	cd ~/pipelineOP/openpose_cfg/ && bash 003_install_cudnn.sh && cd ~/pipelineOP
 
 	# Build opencv from source 
-	cd ~/pipeline16044/openpose_cfg/ && bash 004_install_opencv3_4_5.sh && cd ~/pipeline16044
+	cd ~/pipelineOP/openpose_cfg/ && bash 004_install_opencv345_python35.sh && cd ~/pipelineOP
 	# restart terminal
 
 
