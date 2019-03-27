@@ -5,17 +5,16 @@
 
 	cd ~/pipelineOP/openpose_cfg/ && bash 001_install_deps.sh && cd ~/pipelineOP
 
-	# download the cuda toolkit
+	# download the cuda toolkit, CUDA Version: 10.1
 	https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=debnetwork
 	cd ~/pipelineOP/openpose_cfg/ && bash 002_install_cuda.sh && cd ~/pipelineOP
 
 	# Test nvidia installation
 	nvidia-smi
 
-	# install cudnn 10.0.0
+	# install cudnn 7.5.0.56-1
 	# Download from 
 	https://developer.nvidia.com/rdp/cudnn-download
-	# gutterpuddles pointANDgloryZERO
 	cd ~/pipelineOP/openpose_cfg/ && bash 003_install_cudnn.sh && cd ~/pipelineOP
 
 	# Build opencv from source 
