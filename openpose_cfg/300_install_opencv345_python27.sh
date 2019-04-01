@@ -1,12 +1,13 @@
 # https://www.pyimagesearch.com/2015/06/22/install-opencv-3-0-and-python-2-7-on-ubuntu/
 
-	sudo apt-get install -y build-essential cmake git pkg-config libjpeg8-dev libtiff5-dev libjasper-dev libpng12-dev
-	sudo apt-get install -y libgtk2.0-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
-	sudo apt-get install -y libatlas-base-dev gfortran
+	sudo apt-get install -y build-essential cmake pkg-config libjpeg8-dev libtiff5-dev libjasper-dev libpng12-dev
+	sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev
+	sudo apt-get install -y libgtk2.0-dev libgtk-3-dev libatlas-base-dev gfortran
+	sudo apt-get install -y python2.7-dev python3.5-dev
 	wget https://bootstrap.pypa.io/get-pip.py
 	sudo python get-pip.py
 
-	sudo apt-get install -y python2.7-dev
+	
 
 	pip install numpy --user 
 	pip install imutils --user 

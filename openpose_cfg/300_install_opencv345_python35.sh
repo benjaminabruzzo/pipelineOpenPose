@@ -2,9 +2,8 @@
 
 	sudo apt-get install -y build-essential cmake pkg-config libjpeg8-dev libtiff5-dev libjasper-dev libpng12-dev
 	sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev
-	sudo apt-get install -y libgtk-3-dev libatlas-base-dev gfortran
+	sudo apt-get install -y libgtk2.0-dev libgtk-3-dev libatlas-base-dev gfortran
 	sudo apt-get install -y python2.7-dev python3.5-dev
-
 	wget https://bootstrap.pypa.io/get-pip.py
 	sudo python3 get-pip.py
 
