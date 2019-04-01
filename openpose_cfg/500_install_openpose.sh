@@ -12,26 +12,20 @@
 
 	mkdir -p cd ~/CMU/openpose/build && cd ~/CMU/openpose/build && cmake -DBUILD_PYTHON=ON .. 2>&1 | tee cmake_log.out  # This takes a while, just be patient
 
-	cmake-gui
+	cd ~/CMU/openpose/build && cmake-gui
 		# "Where is the source code?" /home/benjamin/CMU/openpose
 		# "Where to build the binaries?" /home/benjamin/CMU/openpose/build
 		# check BUILD_PYTHON
+		## To build for python 2.7:
+		# Check "advanced"
+		# PYTHON_EXECUTABLE=/usr/bin/python2.7
+		# PYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython2.7.so
 
-	make 2>&1 | tee make_log.out
+	cd ~/CMU/openpose/build && make 2>&1 | tee make_log.out
 	
 	cd ~/CMU/openpose/build && sudo make install | tee install_log.out
 
-# testing install
-python3
 
-import sys
-import cv2
-import os
-from sys import platform
-import argparse
-
-sys.path.append('/usr/local/python')
-from openpose import pyopenpose as op
 
 
 

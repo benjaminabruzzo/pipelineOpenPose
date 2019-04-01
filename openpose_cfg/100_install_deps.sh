@@ -24,4 +24,5 @@ sudo -H pip3 install --upgrade numpy protobuf opencv-python
 # # sudo apt-get --assume-yes install libopencv-dev
 # OpenCL Generic
 sudo apt-get --assume-yes install opencl-headers ocl-icd-opencl-dev
+sudo apt-get --assume-yes install libopencv-dev
 sudo apt-get --assume-yes install libviennacl-dev

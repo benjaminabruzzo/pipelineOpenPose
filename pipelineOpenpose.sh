@@ -8,6 +8,7 @@
 	# download the cuda toolkit, CUDA Version: 10.1
 	https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=debnetwork
 	cd ~/pipelineOP/openpose_cfg/ && bash 200_install_cuda.sh && cd ~/pipelineOP
+	sudo reboot
 
 	# Test nvidia installation
 	nvidia-smi
@@ -21,11 +22,14 @@
 	cd ~/pipelineOP/openpose_cfg/ && bash 250_install_cudnn.sh && cd ~/pipelineOP
 
 	# Build opencv from source 
-	cd ~/pipelineOP/openpose_cfg/ && bash 300_install_opencv345_python35.sh && cd ~/pipelineOP
+	# cd ~/pipelineOP/openpose_cfg/ && bash 300_install_opencv345_python35.sh && cd ~/pipelineOP
 	# restart terminal
 
 	# Build openpose from github
 	# manually follow steps in 500_install_openpose.sh
+	## test python installs:
+	cd ~/pipelineOP/openpose_cfg/ && python 504_test_python.py
+	cd ~/pipelineOP/openpose_cfg/ && python 504_test_python.py
 
 	# Install ROS
 		## install dependencies
