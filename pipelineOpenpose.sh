@@ -15,16 +15,14 @@
 	# install cudnn 7.5.0.56-1
 	# Download from 
 	https://developer.nvidia.com/rdp/cudnn-download
+	# libcudnn7-dev_7.5.0.56-1+cuda10.1_amd64.deb
+	# libcudnn7-doc_7.5.0.56-1+cuda10.1_amd64.deb
+	# libcudnn7_7.5.0.56-1+cuda10.1_amd64.deb
 	cd ~/pipelineOP/openpose_cfg/ && bash 003_install_cudnn.sh && cd ~/pipelineOP
 
 	# Build opencv from source 
 	cd ~/pipelineOP/openpose_cfg/ && bash 004_install_opencv345_python35.sh && cd ~/pipelineOP
 	# restart terminal
 
-
 	# Build openpose from github
-	https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/installation.md#installation
-
-
-	scp benjamin@helios0.local:~/.ssh/id_rsa.pub ~/.ssh/helios0.pub && scp ~/.ssh/id_rsa.pub benjamin@helios0.local:~/.ssh/titan.pub
-	scp benjamin@helios0.local:~/CMU/openpose/models/* ~/CMU/openpose/models/
+	# manually follow steps in 005_install_openpose.sh

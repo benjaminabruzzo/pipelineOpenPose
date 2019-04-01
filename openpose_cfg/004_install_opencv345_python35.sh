@@ -9,6 +9,7 @@
 	sudo python3 get-pip.py
 
 	python3 -m pip install numpy --user 
+	python3 -m pip install pyyaml --user 
 	python3 -m pip install imutils --user 
 
 	mkdir -p ~/opencv/opencv && cd ~/opencv/opencv && git init 
