@@ -7,9 +7,8 @@
 	wget https://bootstrap.pypa.io/get-pip.py
 	sudo python get-pip.py
 
-	
-
 	pip install numpy --user 
+	pip install pyyaml --user 
 	pip install imutils --user 
 
 	mkdir -p ~/opencv/opencv && cd ~/opencv/opencv && git init 
