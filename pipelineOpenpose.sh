@@ -31,16 +31,6 @@
 	cd ~/pipelineOP/openpose_cfg/ && python 504_test_python.py
 	cd ~/pipelineOP/openpose_cfg/ && python 504_test_python.py
 
-	# Install ROS
-		## install dependencies
-		cd ~/pipelineOP/openpose_cfg/ && bash 600_install_ros_deps.sh && cd ~/pipelineOP
-		# Reboot
+	cd ~/pipelineOP/examples/ && python 01_body_from_image.py
 
-		## install ros
-		cd ~/pipelineOP/openpose_cfg/ && bash 700_install_ros_kinetic.sh && cd ~/ros
-		# Reboot
 	
-		## initialize ros
-		cd ~/pipelineOP/openpose_cfg/ && bash 710_init_ros.sh && cd ~/pipelineOP
-
-

@@ -7,7 +7,7 @@
 	cd ~/CMU/openpose && . ./models/getModels.sh
 
 	# {#try } || {#catch } # Saves time by keeping models saved from earlier installation attempt
-	# scp -rp benjamin@helios0.local:~/CMU/openpose/models/ ~/CMU/openpose/models/
+	# scp -rp benjamin@helios0.local:~/CMU/openpose/models/ ~/CMU/openpose/
 	# { cp -a ~/pipeline16044/models/. ~/CMU/openpose/models ; } || { . ./models/getModels.sh	#; }
 
 	mkdir -p cd ~/CMU/openpose/build && cd ~/CMU/openpose/build && cmake -DBUILD_PYTHON=ON .. 2>&1 | tee cmake_log.out  # This takes a while, just be patient
