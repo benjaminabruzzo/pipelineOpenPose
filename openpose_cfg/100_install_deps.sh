@@ -15,7 +15,8 @@ sudo apt-get --assume-yes install libgflags-dev libgoogle-glog-dev liblmdb-dev
 # Python2 libs
 sudo apt-get --assume-yes install python-setuptools python-dev build-essential
 sudo easy_install pip
-sudo -H pip install --upgrade numpy protobuf opencv-python
+sudo -H pip install --upgrade numpy protobuf opencv-python 
+
 # Python3 libs
 sudo apt-get --assume-yes install python3-setuptools python3-dev build-essential
 sudo apt-get --assume-yes install python3-pip
@@ -26,3 +27,13 @@ sudo -H pip3 install --upgrade numpy protobuf opencv-python
 sudo apt-get --assume-yes install opencl-headers ocl-icd-opencl-dev
 sudo apt-get --assume-yes install libopencv-dev
 sudo apt-get --assume-yes install libviennacl-dev
+
+
+
+pip install 'scikit-image<0.15'
+pip install 'networkx==2.2'
+
+
+sudo apt-get --assume-yes install python-matplotlib python-numpy python-pil python-scipy
+sudo apt-get --assume-yes install build-essential cython
+sudo apt-get --assume-yes install python-skimage
