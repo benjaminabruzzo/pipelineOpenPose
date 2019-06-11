@@ -3,7 +3,7 @@
 	# Distribution 			Kernel* 	GCC 	GLIBC 	ICC 	PGI 	XLC 	CLANG
 	# Ubuntu 16.04.5 (**) 	4.4 		5.4.0 	2.23 	18.0 	18.x 	NO 		6.0.0
 
-	cd ~/pipelineOP/openpose_cfg/ && bash 100_install_deps.sh && cd ~/pipelineOP
+	cd ~/pipelineOP/openpose_cfg/ && sudo bash 100_install_deps.sh && cd ~/pipelineOP
 
 	# download the cuda toolkit, CUDA Version: 10.1
 	https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=debnetwork
