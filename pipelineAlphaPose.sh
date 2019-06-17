@@ -20,7 +20,8 @@
 	cd ~/pipelineOP/openpose_cfg/ && bash 250_install_cudnn.sh && cd ~/pipelineOP
 
 	# https://github.com/MVIG-SJTU/AlphaPose
-	cd ~/; git clone https://github.com/MVIG-SJTU/AlphaPose.git 
+	# cd ~/; git clone https://github.com/MVIG-SJTU/AlphaPose.git 
+	cd ~/; git clone git@github.com:benjaminabruzzo/AlphaPose.git
 	cd ~/AlphaPose/human-detection/lib/ && make clean && make && cd newnms/ && make && cd ../../../
 
 	# Install Torch 
@@ -35,9 +36,13 @@
 	scp benjamin@saturn.local:~/Downloads/alphapose/output.zip ~/AlphaPose/human-detection/; cd ~/AlphaPose/human-detection/; unzip output.zip; rm output.zip
 	mkdir ~/AlphaPose/predict/models; scp benjamin@saturn.local:~/Downloads/alphapose/final_model.t7 ~/AlphaPose/predict/models/
 
-	cd  ~/AlphaPose; ./run.sh --indir examples/demo/ --outdir examples/results/ --vis
+	# cd  ~/AlphaPose; ./run.sh --indir examples/demo/ --outdir examples/results/ --vis
+	cd  ~/AlphaPose; ./run.sh --indir examples/aggressive/src/ --outdir examples/aggressive/results --vis
 
 	git add --all .; git commit -m 'adding test files'
+
+	
+
 
 	# checkout real-time mxnet version
 	git fetch origin; git checkout mxnet; mkdir ~/AlphaPose/sppe/params/
@@ -57,21 +62,31 @@
 	mkdir -p ~/datasets/coco/val2017/images && gsutil -m rsync gs://images.cocodataset.org/val2017 ~/datasets/coco/val2017/images
 	# mkdir -p ~/datasets/coco/annotations && cd ~/datasets/coco/annotations && gsutil -m rsync gs://images.cocodataset.org/annotations $PWD
 	# gsutil -m rsync gs://images.cocodataset.org/annotations ~/datasets/coco/annotations
-		wget http://images.cocodataset.org/annotations/annotations_trainval2014.zip; unzip annotations_trainval2014.zip; rm annotations_trainval2014.zip
-		wget http://images.cocodataset.org/annotations/annotations_trainval2017.zip; unzip annotations_trainval2017.zip; rm annotations_trainval2017.zip
-		wget http://images.cocodataset.org/annotations/image_info_test2014.zip; unzip image_info_test2014.zip; rm image_info_test2014.zip
-		wget http://images.cocodataset.org/annotations/image_info_unlabeled2017.zip; unzip image_info_unlabeled2017.zip; rm image_info_unlabeled2017.zip
-		wget http://images.cocodataset.org/annotations/stuff_image_info_test2017.zip; unzip stuff_image_info_test2017.zip; rm stuff_image_info_test2017.zip
-		wget http://images.cocodataset.org/annotations/image_info_test2015.zip; unzip image_info_test2015.zip; rm image_info_test2015.zip
-		wget http://images.cocodataset.org/annotations/image_info_test2017.zip; unzip image_info_test2017.zip; rm image_info_test2017.zip
-		wget http://images.cocodataset.org/annotations/stuff_annotations_trainval2017.zip; unzip stuff_annotations_trainval2017.zip; rm stuff_annotations_trainval2017.zip
-		wget http://images.cocodataset.org/annotations/panoptic_annotations_trainval2017.zip; unzip panoptic_annotations_trainval2017.zip; rm panoptic_annotations_trainval2017.zip
+	mkdir -p ~/AlphaPose/data/coco/annotations/; cd ~/AlphaPose/data/coco/;
+	scp benjamin@saturn.local:~/Downloads/alphapose/annot_coco.h5 ~/AlphaPose/data/coco/
+	scp benjamin@saturn.local:~/Downloads/alphapose/annotations_trainval2014.zip ~/AlphaPose/data/coco/; unzip annotations_trainval2014.zip; rm annotations_trainval2014.zip
+	cp ~/AlphaPose/data/coco/annotations/person_keypoints_val2014.json ~/AlphaPose/data/coco/
+
+		# wget http://images.cocodataset.org/annotations/annotations_trainval2014.zip; unzip annotations_trainval2014.zip; rm annotations_trainval2014.zip
+		# wget http://images.cocodataset.org/annotations/annotations_trainval2017.zip; unzip annotations_trainval2017.zip; rm annotations_trainval2017.zip
+		# wget http://images.cocodataset.org/annotations/image_info_test2014.zip; unzip image_info_test2014.zip; rm image_info_test2014.zip
+		# wget http://images.cocodataset.org/annotations/image_info_unlabeled2017.zip; unzip image_info_unlabeled2017.zip; rm image_info_unlabeled2017.zip
+		# wget http://images.cocodataset.org/annotations/stuff_image_info_test2017.zip; unzip stuff_image_info_test2017.zip; rm stuff_image_info_test2017.zip
+		# wget http://images.cocodataset.org/annotations/image_info_test2015.zip; unzip image_info_test2015.zip; rm image_info_test2015.zip
+		# wget http://images.cocodataset.org/annotations/image_info_test2017.zip; unzip image_info_test2017.zip; rm image_info_test2017.zip
+		# wget http://images.cocodataset.org/annotations/stuff_annotations_trainval2017.zip; unzip stuff_annotations_trainval2017.zip; rm stuff_annotations_trainval2017.zip
+		# wget http://images.cocodataset.org/annotations/panoptic_annotations_trainval2017.zip; unzip panoptic_annotations_trainval2017.zip; rm panoptic_annotations_trainval2017.zip
 
 
-	# sudo apt-get update && sudo apt-get -y install python3-pip
-	# sudo apt install python3-dev python3-pip
-	# or 
-	# sudo apt install -y python-dev python-pip  
+	# test alpha pose
+
+	mkdir -p ~/AlphaPose/exp; mkdir -p ~/AlphaPose/src; 
+	cd ~/AlphaPose; MXNET_CPU_WORKER_NTHREADS=2 python video_demo.py --nClasses 33
+
+
+	echo 'export PYTHONPATH="${PYTHONPATH}:/home/benjamin/AlphaPose"' >> ~/.bashrc
+	echo 'echo "Python Path: " $PYTHONPATH' >> ~/.bashrc
+
 
 
 # 	# Add NVIDIA package repositories
