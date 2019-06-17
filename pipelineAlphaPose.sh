@@ -8,71 +8,39 @@
 	# download the cuda toolkit, CUDA Version: 10.0
 	# gutter.puddles point and glory zero
 	# https://developer.nvidia.com/cuda-10.0-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=deblocal
-	cd ~/Downloads && sudo dpkg -i cuda-repo*.deb
-	sudo apt-key add /var/cuda-repo-10-0-local-10.0.130-410.48/7fa2af80.pub
-	sudo apt-get update && sudo apt-get install -y cuda-10-0
-		echo 'export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}' >> ~/.bashrc 
-	sudo reboot
-
-
-	# Cuda 10.1 does not work
-	# download the cuda toolkit, CUDA Version: 10.1
-	# https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=debnetwork
-	# cd ~/pipelineOP/openpose_cfg/ && bash 200_install_cuda.sh && cd ~/pipelineOP
-	# sudo reboot
+	cd ~/pipelineOP/openpose_cfg/ && bash 201_install_cuda-10-0.sh && cd ~/pipelineOP
 
 	# Test nvidia installation
 	nvidia-smi
 
-	# install cudnn 7.5.0.56-1
+	# install cudnn 7.6.0
 	# Download from 
-	https://developer.nvidia.com/rdp/cudnn-download
-	# libcudnn7-dev_7.5.0.56-1+cuda10.1_amd64.deb
-	# libcudnn7-doc_7.5.0.56-1+cuda10.1_amd64.deb
-	# libcudnn7_7.5.0.56-1+cuda10.1_amd64.deb
+	# https://developer.nvidia.com/rdp/cudnn-download
+	# libcudnn7_*_amd64.deb libcudnn7-dev_*_amd64.deb libcudnn7-doc_*_amd64.deb
 	cd ~/pipelineOP/openpose_cfg/ && bash 250_install_cudnn.sh && cd ~/pipelineOP
 
-
 	# https://github.com/MVIG-SJTU/AlphaPose
+	cd ~/; git clone https://github.com/MVIG-SJTU/AlphaPose.git 
+	cd ~/AlphaPose/human-detection/lib/ && make clean && make && cd newnms/ && make && cd ../../../
+
+	# Install Torch 
+	cd ~/pipelineOP/openpose_cfg/ && bash 251_install_torch_for_cuda-10-0.sh && cd ~/pipelineOP
+
+	# Install TensorFlow(verson >= 1.2). 
+	cd ~/pipelineOP/openpose_cfg/ && bash 252_install_tensorflow_for_cuda-10-0.sh && cd ~/pipelineOP
+
+	# Install related dependencies by:
+	cd  ~/AlphaPose; chmod +x install.sh; ./install.sh
+	# cd  ~/AlphaPose; chmod +x fetch_models.sh; ./fetch_models.sh
+	scp benjamin@saturn.local:~/Downloads/alphapose/output.zip ~/AlphaPose/human-detection/; cd ~/AlphaPose/human-detection/; unzip output.zip; rm output.zip
+	mkdir ~/AlphaPose/predict/models; scp benjamin@saturn.local:~/Downloads/alphapose/final_model.t7 ~/AlphaPose/predict/models/
+
+	cd  ~/AlphaPose; ./run.sh --indir examples/demo/ --outdir examples/results/ --vis
 
 	# sudo apt-get update && sudo apt-get -y install python3-pip
 	# sudo apt install python3-dev python3-pip
 	# or 
-	sudo apt install python-dev python-pip  
-
-	cd ~/ && git clone https://github.com/MVIG-SJTU/AlphaPose.git 
-	cd ~/AlphaPose/human-detection/lib/ && make clean && make && cd newnms/ && make && cd ../../../
-
-	# Install Torch 
-	# http://torch.ch/docs/getting-started.html#_
-	git clone https://github.com/torch/distro.git ~/torch --recursive
-	cd ~/torch; bash install-deps;
-	./install.sh
-
-	source ~/.bashrc
-
-	# Install TensorFlow(verson >= 1.2). 
-	# https://www.tensorflow.org/install/pip
-	# pip3 install --user --upgrade tensorflow # install in $HOME (no GPU support)
-	# pip3 uninstall tensorflow # install in $HOME (no GPU support)
-	# pip3 install --user --upgrade tensorflow-gpu # install in $HOME (no GPU support)
-	# pip3 uninstall tensorflow-gpu # install in $HOME
-
-	pip install --user --upgrade tensorflow # install in $HOME (no GPU support)
-	# pip3 uninstall tensorflow # install in $HOME (no GPU support)
-	pip install --user --upgrade tensorflow-gpu # install in $HOME
-	# pip3 uninstall tensorflow-gpu # install in $HOME
-
-
-	# Install related dependencies by:
-	cd  ~/AlphaPose; chmod +x install.sh; ./install.sh
-	cd  ~/AlphaPose; chmod +x fetch_models.sh; ./fetch_models.sh
-
-
-
-	cd  ~/AlphaPose; ./run.sh --indir examples/demo/ --outdir examples/results/ --vis
-
-
+	# sudo apt install -y python-dev python-pip  
 
 
 # 	# Add NVIDIA package repositories
