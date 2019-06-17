@@ -37,6 +37,37 @@
 
 	cd  ~/AlphaPose; ./run.sh --indir examples/demo/ --outdir examples/results/ --vis
 
+	git add --all .; git commit -m 'adding test files'
+
+	# checkout real-time mxnet version
+	git fetch origin; git checkout mxnet; mkdir ~/AlphaPose/sppe/params/
+	scp benjamin@saturn.local:~/Downloads/alphapose/duc_se.params ~/AlphaPose/sppe/params/
+
+	# install gluoncv
+	pip install --upgrade setuptools; cd ~/AlphaPose; pip install mxnet-mkl>=1.4.0 --upgrade
+
+	# pip install --upgrade gluoncv
+	mkdir -p ~/gluoncv; git clone https://github.com/dmlc/gluon-cv ~/gluoncv
+	cd ~/gluoncv && python setup.py install --user
+
+
+	# download gsutil
+	mkdir -p ~/gsutil; cd ~/gsutil; curl https://sdk.cloud.google.com | bash
+	# open new terminal
+	mkdir -p ~/datasets/coco/val2017/images && gsutil -m rsync gs://images.cocodataset.org/val2017 ~/datasets/coco/val2017/images
+	# mkdir -p ~/datasets/coco/annotations && cd ~/datasets/coco/annotations && gsutil -m rsync gs://images.cocodataset.org/annotations $PWD
+	# gsutil -m rsync gs://images.cocodataset.org/annotations ~/datasets/coco/annotations
+		wget http://images.cocodataset.org/annotations/annotations_trainval2014.zip; unzip annotations_trainval2014.zip; rm annotations_trainval2014.zip
+		wget http://images.cocodataset.org/annotations/annotations_trainval2017.zip; unzip annotations_trainval2017.zip; rm annotations_trainval2017.zip
+		wget http://images.cocodataset.org/annotations/image_info_test2014.zip; unzip image_info_test2014.zip; rm image_info_test2014.zip
+		wget http://images.cocodataset.org/annotations/image_info_unlabeled2017.zip; unzip image_info_unlabeled2017.zip; rm image_info_unlabeled2017.zip
+		wget http://images.cocodataset.org/annotations/stuff_image_info_test2017.zip; unzip stuff_image_info_test2017.zip; rm stuff_image_info_test2017.zip
+		wget http://images.cocodataset.org/annotations/image_info_test2015.zip; unzip image_info_test2015.zip; rm image_info_test2015.zip
+		wget http://images.cocodataset.org/annotations/image_info_test2017.zip; unzip image_info_test2017.zip; rm image_info_test2017.zip
+		wget http://images.cocodataset.org/annotations/stuff_annotations_trainval2017.zip; unzip stuff_annotations_trainval2017.zip; rm stuff_annotations_trainval2017.zip
+		wget http://images.cocodataset.org/annotations/panoptic_annotations_trainval2017.zip; unzip panoptic_annotations_trainval2017.zip; rm panoptic_annotations_trainval2017.zip
+
+
 	# sudo apt-get update && sudo apt-get -y install python3-pip
 	# sudo apt install python3-dev python3-pip
 	# or 
