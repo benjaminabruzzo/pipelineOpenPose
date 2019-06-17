@@ -7,17 +7,12 @@
 
 	# download the cuda toolkit, CUDA Version: 10.0
 	# gutter.puddles point and glory zero
-	https://developer.nvidia.com/cuda-10.0-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=deblocal
+	# https://developer.nvidia.com/cuda-10.0-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=deblocal
 	cd ~/Downloads && sudo dpkg -i cuda-repo*.deb
-	sudo apt-key add /var/cuda-repo-10.0.130-1/7fa2af80.pub
+	sudo apt-key add /var/cuda-repo-10-0-local-10.0.130-410.48/7fa2af80.pub
 	sudo apt-get update && sudo apt-get install -y cuda-10-0
 		echo 'export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}' >> ~/.bashrc 
-		echo 'export PATH=/usr/local/cuda-10.1/bin:/usr/local/cuda-10.1/NsightCompute-2019.1${PATH:+:${PATH}}' >> ~/.bashrc 
-	# echo '/usr/bin/nvidia-persistenced --verbose' >> ~/.bashrc
 	sudo reboot
-
-
-
 
 
 	# Cuda 10.1 does not work
