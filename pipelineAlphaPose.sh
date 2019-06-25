@@ -31,6 +31,7 @@
 	cd ~/pipelineOP/openpose_cfg/ && bash 252_install_tensorflow_for_cuda-10-0.sh && cd ~/pipelineOP
 
 	# Install related dependencies by:
+	pip install pyyaml --user 
 	cd  ~/AlphaPose; chmod +x install.sh; ./install.sh
 	# cd  ~/AlphaPose; chmod +x fetch_models.sh; ./fetch_models.sh
 	scp benjamin@saturn.local:~/Downloads/alphapose/output.zip ~/AlphaPose/human-detection/; cd ~/AlphaPose/human-detection/; unzip output.zip; rm output.zip
