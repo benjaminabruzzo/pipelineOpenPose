@@ -11,6 +11,8 @@
 	# { cp -a ~/pipeline16044/models/. ~/CMU/openpose/models ; } || { . ./models/getModels.sh	#; }
 
 	mkdir -p cd ~/CMU/openpose/build && cd ~/CMU/openpose/build && cmake -DBUILD_PYTHON=ON .. 2>&1 | tee cmake_log.out  # This takes a while, just be patient
+	
+	sudo apt install cmake-qt-gui
 
 	cd ~/CMU/openpose/build && cmake-gui
 		# "Where is the source code?" /home/benjamin/CMU/openpose
